@@ -73,12 +73,18 @@ var (
 		common.HexToAddress(systemcontracts.ValidatorContract):          true,
 		common.HexToAddress(systemcontracts.SlashContract):              true,
 		common.HexToAddress(systemcontracts.SystemRewardContract):       true,
-		common.HexToAddress(systemcontracts.LightClientContract):        true,
-		common.HexToAddress(systemcontracts.RelayerHubContract):         true,
-		common.HexToAddress(systemcontracts.GovHubContract):             true,
-		common.HexToAddress(systemcontracts.TokenHubContract):           true,
-		common.HexToAddress(systemcontracts.RelayerIncentivizeContract): true,
-		common.HexToAddress(systemcontracts.CrossChainContract):         true,
+		common.HexToAddress(systemcontracts.LightClientContract):        false,
+		common.HexToAddress(systemcontracts.RelayerHubContract):         false,
+		common.HexToAddress(systemcontracts.GovHubContract):             false,
+		common.HexToAddress(systemcontracts.TokenHubContract):           false,
+		common.HexToAddress(systemcontracts.RelayerIncentivizeContract): false,
+		common.HexToAddress(systemcontracts.CrossChainContract):         false,
+		common.HexToAddress(systemcontracts.StakingPoolContract):        true,
+		common.HexToAddress(systemcontracts.GovernanceContract):         true,
+		common.HexToAddress(systemcontracts.ChainConfigContract):        true,
+		common.HexToAddress(systemcontracts.RuntimeUpgradeContract):     true,
+		common.HexToAddress(systemcontracts.DeployerProxyContract):      true,
+
 	}
 )
 
@@ -1101,11 +1107,17 @@ func (p *Parlia) initContract(state *state.StateDB, header *types.Header, chain 
 	contracts := []string{
 		systemcontracts.ValidatorContract,
 		systemcontracts.SlashContract,
-		systemcontracts.LightClientContract,
-		systemcontracts.RelayerHubContract,
-		systemcontracts.TokenHubContract,
-		systemcontracts.RelayerIncentivizeContract,
-		systemcontracts.CrossChainContract,
+		systemcontracts.SystemRewardContract,
+		systemcontracts.StakingPoolContract,
+		systemcontracts.GovernanceContract,
+		systemcontracts.ChainConfigContract,
+		systemcontracts.RuntimeUpgradeContract,
+		systemcontracts.DeployerProxyContract,
+		//systemcontracts.LightClientContract,
+		//systemcontracts.RelayerHubContract,
+		//systemcontracts.TokenHubContract,
+		//systemcontracts.RelayerIncentivizeContract,
+		//systemcontracts.CrossChainContract,
 	}
 	// get packed data
 	data, err := p.validatorSetABI.Pack(method)
